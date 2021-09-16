@@ -1,14 +1,11 @@
 import React, { useContext, useReducer, useEffect, useRef, useState, createContext } from 'react';
 // import TodoForm from './TodoForm/TodoForm';
 // import List from  './List/List'
-import reducer from './Reducer/Reducer'
-
+import {Store, StoreProvider} from './Provider/Provider';
 
 const HOST_API = "http://localhost:8080/api";
-const initialState = {
-  todo: { list: [], item: {} }
-};
-const Store = createContext(initialState)
+
+
 
 function TodoForm() {
   const formRef = useRef(null);
@@ -154,17 +151,10 @@ function List() {
   </div>
 }
 
-const StoreProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
 
-  return <Store.Provider value={{ state, dispatch }}>
-    {children}
-  </Store.Provider>
-
-}
 
 function App() {
-  return <StoreProvider>
+  return <StoreProvider >
     <h3>To-Do List</h3>
     <TodoForm />
     <List />
