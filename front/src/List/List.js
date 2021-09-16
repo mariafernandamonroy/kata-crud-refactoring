@@ -1,10 +1,7 @@
-import React, { useContext, useEffect, createContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { Store } from '../Provider/Provider';
 
 const HOST_API = "http://localhost:8080/api";
-const initialState = {
-  todo: { list: [], item: {} }
-};
-const Store = createContext(initialState)
 
 function List() {
   const { dispatch, state: { todo } } = useContext(Store);

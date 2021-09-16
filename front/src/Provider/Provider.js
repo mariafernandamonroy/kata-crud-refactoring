@@ -8,8 +8,6 @@ const Store = createContext(initialState)
 
 function StoreProvider (props) {
   
-  console.log(Store)
-
   const [state, dispatch] = useReducer(reducer, initialState);
   
   return <Store.Provider value={{ state, dispatch }}>

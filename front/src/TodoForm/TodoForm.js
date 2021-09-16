@@ -1,10 +1,7 @@
-import React, { createContext, useContext, useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
+import { Store } from '../Provider/Provider';
 
 const HOST_API = "http://localhost:8080/api";
-const initialState = {
-  todo: { list: [], item: {} }
-};
-const Store = createContext(initialState)
 
 function TodoForm() {
   const formRef = useRef(null);
@@ -76,5 +73,6 @@ function TodoForm() {
     {!item.id && <button onClick={onAdd}>Crear</button>}
   </form>
 }
+
 
 export default TodoForm;
