@@ -1,9 +1,9 @@
 package co.com.sofka.crud;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="todo")
@@ -11,6 +11,8 @@ public class Todo {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
+    @Size(min = 3, message = "La tarea debe tener al menos tres carácteres")
     private String name;
     private boolean completed;
     private String groupListId;
@@ -31,6 +33,7 @@ public class Todo {
         this.id = id;
     }
 
+    @Column(name = "first_name", nullable = false)
     public String getName() {
         return name;
     }

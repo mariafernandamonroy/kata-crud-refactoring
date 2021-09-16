@@ -70,7 +70,6 @@ function TodoForm() {
     }
   };
 
-  
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <input
