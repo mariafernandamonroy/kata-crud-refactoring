@@ -19,7 +19,6 @@ function TodoForm() {
       completed: false
     };
 
-
     fetch(HOST_API + "/todo", {
       method: "POST",
       body: JSON.stringify(request),
@@ -43,7 +42,6 @@ function TodoForm() {
       id: item.id,
       isCompleted: item.isCompleted
     };
-
 
     fetch(HOST_API + "/todo", {
       method: "PUT",
