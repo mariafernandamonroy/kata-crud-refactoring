@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, createContext } from 'react';
 
 const HOST_API = "http://localhost:8080/api";
 const initialState = {

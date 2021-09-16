@@ -6,9 +6,10 @@ const initialState = {
 };
 const Store = createContext(initialState)
 
-function Form() {
+function TodoForm() {
   const formRef = useRef(null);
   const { dispatch, state: { todo } } = useContext(Store);
+  console.log(todo)
   const item = todo.item;
   const [state, setState] = useState(item);
 
@@ -76,4 +77,4 @@ function Form() {
   </form>
 }
 
-export default Form;
+export default TodoForm;
