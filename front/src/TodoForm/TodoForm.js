@@ -70,20 +70,23 @@ function TodoForm() {
     }
   };
 
-  const handleChangeInput = (evento) => {
+  const handleChangeInput = (event) => {
     
-    console.log(event.target)
-    const { name, value } = evento.target;
+    const { name, value } = event.target;
     let regex = new RegExp("[$%&|<>#]");
 
-    if (!regex.test(value)) {
-      console.log(name, value);
-      this.setState({
+    console.log({value})
+    console.log(event.target.classList)
+    if (regex.test(value)) {
+      
+
+      event.target.classList.remove('valid');
+
+      event.target.classList.add('invalid');
+      setState({ ...state,
         [name]: value
       });
-    } else {
-      console.log("es numero");
-    }
+    } 
   }
 
 
@@ -95,9 +98,7 @@ function TodoForm() {
         placeholder="¿Qué piensas hacer hoy?"
         required
         defaultValue={item.name}
-        onChange={(event) => {
-          
-        }}
+        onChange={handleChangeInput}
       ></input>
       {item.id && (
         <button className="TodoForm_btn" type="submit">
