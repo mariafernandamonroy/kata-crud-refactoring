@@ -15,16 +15,20 @@ function reducer(state, action) {
     return todoUpItem;
   }
 
-  switch (action.type) {
-    case "update-item":
-      return { ...state, todo: updateItem() };
-    case "delete-item":
-      const todoUpDelete = state.todo;
+  function deleteItem(){
+    const todoUpDelete = state.todo;
       const listUpdate = todoUpDelete.list.filter((item) => {
         return item.id !== action.id;
       });
       todoUpDelete.list = listUpdate;
-      return { ...state, todo: todoUpDelete };
+    return todoUpDelete
+  }
+
+  switch (action.type) {
+    case "update-item":
+      return { ...state, todo: updateItem() };
+    case "delete-item":
+      return { ...state, todo: deleteItem() };
     case "update-list":
       const todoUpList = state.todo;
       todoUpList.list = action.list;
