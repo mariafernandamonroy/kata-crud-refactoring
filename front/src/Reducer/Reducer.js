@@ -24,23 +24,35 @@ function reducer(state, action) {
     return todoUpDelete
   }
 
+  function updateList(){
+    const todoUpList = state.todo;
+    todoUpList.list = action.list;
+    return todoUpList
+  }
+
+  function editItem(){
+    const todoUpEdit = state.todo;
+    todoUpEdit.item = action.item;
+    return todoUpEdit
+  }
+
+  function addItem(){
+    const todoUp = state.todo.list;
+    todoUp.push(action.item);
+    return todoUp
+  }
+
   switch (action.type) {
     case "update-item":
       return { ...state, todo: updateItem() };
     case "delete-item":
       return { ...state, todo: deleteItem() };
     case "update-list":
-      const todoUpList = state.todo;
-      todoUpList.list = action.list;
-      return { ...state, todo: todoUpList };
+      return { ...state, todo: updateList() };
     case "edit-item":
-      const todoUpEdit = state.todo;
-      todoUpEdit.item = action.item;
-      return { ...state, todo: todoUpEdit };
+      return { ...state, todo: editItem() };
     case "add-item":
-      const todoUp = state.todo.list;
-      todoUp.push(action.item);
-      return { ...state, todo: { list: todoUp, item: {} } };
+      return { ...state, todo: { list: addItem(), item: {} } };
     default:
       return state;
   }
