@@ -70,26 +70,7 @@ function TodoForm() {
     }
   };
 
-  const handleChangeInput = (event) => {
-    
-    const { name, value } = event.target;
-    let regex = new RegExp("[$%&|<>#]");
-
-    console.log({value})
-    console.log(event.target.classList)
-    if (regex.test(value)) {
-      
-
-      event.target.classList.remove('valid');
-
-      event.target.classList.add('invalid');
-      setState({ ...state,
-        [name]: value
-      });
-    } 
-  }
-
-
+  
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <input
@@ -97,8 +78,11 @@ function TodoForm() {
         name="name"
         placeholder="¿Qué piensas hacer hoy?"
         required
+        minlength="3"
         defaultValue={item.name}
-        onChange={handleChangeInput}
+        onChange={(event) => {
+          setState({ ...state, name: event.target.value })
+        }}
       ></input>
       {item.id && (
         <button className="TodoForm_btn" type="submit">
