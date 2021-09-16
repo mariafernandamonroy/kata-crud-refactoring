@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Store } from '../Provider/Provider';
+import './List.css'
 
 const HOST_API = "http://localhost:8080/api";
 
@@ -54,19 +55,22 @@ function List() {
     <table >
       <thead>
         <tr>
-          <td>ID</td>
-          <td>Tarea</td>
           <td>¿Completado?</td>
+          <td>Tarea</td>
         </tr>
       </thead>
       <tbody>
         {currentList.map((todo) => {
           return <tr key={todo.id} style={todo.completed ? decorationDone : {}}>
-            <td>{todo.id}</td>
-            <td>{todo.name}</td>
             <td><input type="checkbox" defaultChecked={todo.completed} onChange={(event) => onChange(event, todo)}></input></td>
-            <td><button onClick={() => onDelete(todo.id)}>Eliminar</button></td>
-            <td><button onClick={() => onEdit(todo)}>Editar</button></td>
+            <td>{todo.name}</td>
+            <td><button onClick={() => onEdit(todo)}>
+            <img className="Icon" alt="edit" src="https://cdn-icons-png.flaticon.com/512/747/747825.png"></img>
+              </button></td>
+            <td><button onClick={() => onDelete(todo.id)}>
+              <img className="Icon" alt="delete" src="https://cdn-icons-png.flaticon.com/512/5602/5602138.png"></img>
+               </button></td>
+            
           </tr>
         })}
       </tbody>
