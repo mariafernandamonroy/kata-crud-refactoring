@@ -37,7 +37,6 @@ function TodoForm() {
   };
 
   const onEdit = (event) => {
-    event.preventDefault();
 
     const request = {
       name: state.name,
