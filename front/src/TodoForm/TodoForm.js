@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import { Store } from "../Provider/Provider";
-import './TodoForm.css'
+import "./TodoForm.css";
 
 const HOST_API = "http://localhost:8080/api";
 
@@ -14,7 +14,7 @@ function TodoForm() {
   const [state, setState] = useState(item);
 
   const onAdd = (event) => {
-    event.preventDefault();
+
     const request = {
       name: state.name,
       id: null,
@@ -60,19 +60,57 @@ function TodoForm() {
       });
   };
 
+  const handleSubmit = (event) => {
+    
+    event.preventDefault();
+    if (!item.id) {
+      onAdd()
+    }else if(item.id){
+      onEdit()
+    }
+  };
+
+  const handleChangeInput = (evento) => {
+    
+    console.log(event.target)
+    const { name, value } = evento.target;
+    let regex = new RegExp("[$%&|<>#]");
+
+    if (!regex.test(value)) {
+      console.log(name, value);
+      this.setState({
+        [name]: value
+      });
+    } else {
+      console.log("es numero");
+    }
+  }
+
+
   return (
-    <form ref={formRef} onSubmit={onAdd}>
+    <form ref={formRef} onSubmit={handleSubmit}>
       <input
         type="text"
         name="name"
         placeholder="¿Qué piensas hacer hoy?"
+        required
         defaultValue={item.name}
         onChange={(event) => {
-          setState({ ...state, name: event.target.value });
+          
         }}
       ></input>
-      {item.id && <button className="TodoForm_btn" type="submit" onClick={onEdit}> Actualizar </button>}
-      {!item.id && <button className="TodoForm_btn"  type="submit" onClick={onAdd}> Crear </button>}
+      {item.id && (
+        <button className="TodoForm_btn" type="submit">
+          {" "}
+          Actualizar{" "}
+        </button>
+      )}
+      {!item.id && (
+        <button className="TodoForm_btn" type="submit">
+          {" "}
+          Crear{" "}
+        </button>
+      )}
     </form>
   );
 }
