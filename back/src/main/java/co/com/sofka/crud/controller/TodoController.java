@@ -1,5 +1,6 @@
 package co.com.sofka.crud.controller;
 
+import co.com.sofka.crud.dto.TodoDto;
 import co.com.sofka.crud.service.TodoService;
 import co.com.sofka.crud.entities.Todo;
 import org.modelmapper.ModelMapper;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -15,11 +17,8 @@ public class TodoController {
     @Autowired
     private TodoService service;
 
-    @Autowired
-    private ModelMapper modelMapper = new ModelMapper();
-
     @GetMapping(value = "api/todos")
-    public Iterable<Todo> listAllTodos(){
+    public Iterable<TodoDto> listAllTodos(){
         return service.listAllTodos();
     }
     
@@ -42,7 +41,7 @@ public class TodoController {
     }
 
     @GetMapping(value = "api/{id}/todo")
-    public Todo getTodo(@PathVariable("id") Long id){
+    public TodoDto getTodo(@PathVariable("id") Long id){
         if(id != null) {
             return service.getTodo(id);
         }

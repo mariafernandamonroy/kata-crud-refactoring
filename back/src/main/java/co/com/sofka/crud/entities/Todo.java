@@ -15,14 +15,19 @@ public class Todo {
     @Size(min = 3, message = "La tarea debe tener al menos tres carácteres")
     private String name;
     private boolean completed;
-    private String groupListId;
+    @ManyToOne
+    @JoinColumn(name="List_type")
+    private ListType listType;
 
-    public String getGroupListId() {
-        return groupListId;
+    public Todo() {
+        super();
     }
 
-    public void setGroupListId(String groupListId) {
-        this.groupListId = groupListId;
+    public Todo(Long id, String name, boolean completed, ListType listType) {
+        this.id = id;
+        this.name = name;
+        this.completed = completed;
+        this.listType = listType;
     }
 
     public Long getId() {
@@ -33,7 +38,7 @@ public class Todo {
         this.id = id;
     }
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "name", nullable = false)
     public String getName() {
         return name;
     }
@@ -48,5 +53,13 @@ public class Todo {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public ListType getListType() {
+        return listType;
+    }
+
+    public void setListType(ListType listType) {
+        this.listType = listType;
     }
 }
