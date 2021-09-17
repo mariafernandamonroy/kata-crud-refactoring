@@ -12,17 +12,24 @@ public class ListType {
     private Long idList;
     private String nameList;
     @OneToMany(mappedBy = "listType")
-    private List<Todo> todoList;
+    private List<Todo> todosList;
 
     public ListType() {
         super();
-        todoList = new ArrayList<Todo>();
+        todosList = new ArrayList<Todo>();
+    }
+
+    public List<Todo> getTodosList() {
+        return todosList;
+    }
+    public void addFactura(Todo todo) {
+        todosList.add(todo);
     }
 
     public ListType(Long idList, String nameList, List<Todo> todoList) {
         this.idList = idList;
         this.nameList = nameList;
-        this.todoList = todoList;
+        todosList = new ArrayList<Todo>();
     }
 
     public Long getIdList() {
@@ -41,11 +48,4 @@ public class ListType {
         this.nameList = nameList;
     }
 
-    public List<Todo> getTodoList() {
-        return todoList;
-    }
-
-    public void setTodoList(List<Todo> todoList) {
-        this.todoList = todoList;
-    }
 }
