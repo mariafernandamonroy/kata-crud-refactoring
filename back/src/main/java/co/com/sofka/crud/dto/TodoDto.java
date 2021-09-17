@@ -6,7 +6,6 @@ public class TodoDto {
     private Long id;
     private String name;
     private boolean completed;
-    private String groupListId;
 
     public TodoDto() {
         super();
@@ -16,15 +15,6 @@ public class TodoDto {
         this.id = id;
         this.name = name;
         this.completed = completed;
-        this.groupListId = groupListId;
-    }
-
-    public String getGroupListId() {
-        return groupListId;
-    }
-
-    public void setGroupListId(String groupListId) {
-        this.groupListId = groupListId;
     }
 
     public Long getId() {

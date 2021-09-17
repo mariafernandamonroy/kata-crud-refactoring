@@ -1,17 +1,17 @@
 package co.com.sofka.crud.entities;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name="todosList")
 public class TodosList {
     @Id
     @GeneratedValue
     private Long idList;
     private String nameList;
-    @OneToMany(mappedBy = "listType")
+    @OneToMany(mappedBy = "todosList")
     private List<Todo> todosList;
 
     public TodosList() {
@@ -22,7 +22,7 @@ public class TodosList {
     public List<Todo> getTodosList() {
         return todosList;
     }
-    public void addFactura(Todo todo) {
+    public void addTodo(Todo todo) {
         todosList.add(todo);
     }
 
