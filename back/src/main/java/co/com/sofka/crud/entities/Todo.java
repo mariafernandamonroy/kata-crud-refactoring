@@ -17,17 +17,17 @@ public class Todo {
     private boolean completed;
     @ManyToOne
     @JoinColumn(name="List_type")
-    private ListType listType;
+    private TodosList todosList;
 
     public Todo() {
         super();
     }
 
-    public Todo(Long id, String name, boolean completed, ListType listType) {
+    public Todo(Long id, String name, boolean completed, TodosList todosList) {
         this.id = id;
         this.name = name;
         this.completed = completed;
-        this.listType = listType;
+        this.todosList = todosList;
     }
 
     public Long getId() {
@@ -55,11 +55,11 @@ public class Todo {
         this.completed = completed;
     }
 
-    public ListType getListType() {
-        return listType;
+    public TodosList getListType() {
+        return todosList;
     }
 
-    public void setListType(ListType listType) {
-        this.listType = listType;
+    public void setListType(TodosList todosList) {
+        this.todosList = todosList;
     }
 }

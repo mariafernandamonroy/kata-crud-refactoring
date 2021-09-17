@@ -6,7 +6,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListType {
+public class TodosList {
     @Id
     @GeneratedValue
     private Long idList;
@@ -14,7 +14,7 @@ public class ListType {
     @OneToMany(mappedBy = "listType")
     private List<Todo> todosList;
 
-    public ListType() {
+    public TodosList() {
         super();
         todosList = new ArrayList<Todo>();
     }
@@ -26,7 +26,7 @@ public class ListType {
         todosList.add(todo);
     }
 
-    public ListType(Long idList, String nameList, List<Todo> todoList) {
+    public TodosList(Long idList, String nameList, List<Todo> todoList) {
         this.idList = idList;
         this.nameList = nameList;
         todosList = new ArrayList<Todo>();
