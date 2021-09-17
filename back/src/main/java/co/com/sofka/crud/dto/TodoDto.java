@@ -1,21 +1,23 @@
-package co.com.sofka.crud;
+package co.com.sofka.crud.dto;
 
-import com.sun.istack.NotNull;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
+public class TodoDto {
 
-@Entity
-@Table(name="todo")
-public class Todo {
-    @Id
-    @GeneratedValue
     private Long id;
-    @NotNull
-    @Size(min = 3, message = "La tarea debe tener al menos tres carácteres")
     private String name;
     private boolean completed;
     private String groupListId;
+
+    public TodoDto() {
+        super();
+    }
+
+    public TodoDto(Long id, String name, boolean completed, String groupListId) {
+        this.id = id;
+        this.name = name;
+        this.completed = completed;
+        this.groupListId = groupListId;
+    }
 
     public String getGroupListId() {
         return groupListId;
@@ -33,7 +35,6 @@ public class Todo {
         this.id = id;
     }
 
-    @Column(name = "first_name", nullable = false)
     public String getName() {
         return name;
     }
